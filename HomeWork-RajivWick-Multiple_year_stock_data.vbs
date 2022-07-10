@@ -64,7 +64,7 @@ Dim j As Integer
     SummaryTableRow = 2
     
     '---------------------
-    'Creating our Summary Table Tiles
+    'Creating our Summary Table Titles
     '---------------------
     ws.Range("I1").Value = "Ticker"
     ws.Range("J1").Value = "Yearly Change"
