@@ -15,7 +15,7 @@ Dim ClosePriceYear As Double
 'Price difference between start and end
 Dim PriceDeltaYear As Double
 
-'Percetage value of price difference
+'Percentage value of price difference
 Dim PercentageChangePrice As Double
 
 'The Total overall volume of a individual stock
@@ -34,9 +34,9 @@ Dim LastRow As Long
 'Bonus
 '---------------------
 
-'Storing highest percetage from summary table
+'Storing highest percentage from summary table
 Dim HighestPer As Double
-'Storing lowest percetage from summary table
+'Storing lowest percentage from summary table
 Dim LowestPer As Double
 'Storing highest volume from summary table
 Dim HighestVol As LongLong
@@ -104,12 +104,8 @@ Dim j As Integer
             'Output values to summary table
             ws.Cells(SummaryTableRow, 9).Value = Ticker
             ws.Cells(SummaryTableRow, 10).Value = PriceDeltaYear
-            'Calculate and output the percentage of the difference from the stock value at the start and end of the year within data set
-            ws.Cells(SummaryTableRow, 11).Value = (ClosePriceYear / OpenPriceYear) - 1
-            'Output the total amount volume
-            ws.Cells(SummaryTableRow, 12).Value = TotalStockCounter
-                
-                
+                     
+              
                 '---------------------
                 'Summary Table Visual Formatting - Green/Red - PriceDelaYear
                 '---------------------
@@ -125,14 +121,17 @@ Dim j As Integer
                 ws.Cells(SummaryTableRow, 10).Interior.ColorIndex = 3
                 
                 End If
-                  
+                
+            'Calculate and output the percentage of the difference from the stock value at the start and end of the year within data set
+            ws.Cells(SummaryTableRow, 11).Value = (ClosePriceYear / OpenPriceYear) - 1
+            'Output the total amount volume
+            ws.Cells(SummaryTableRow, 12).Value = TotalStockCounter      
             '---------------------
-            'Summary Table Visual Formatting - % on price difference - Autofit Cells
+            'Summary Table Visual Formatting - % on price difference
             '---------------------
             ws.Cells(SummaryTableRow, 11).NumberFormat = "0.00%"
-            ws.Columns("I:Q").AutoFit
-            
-            
+           
+                        
             '---------------------
             'Now that we have come to the final data entry of a particular stock, we will reset counter variables
             '---------------------
@@ -143,11 +142,7 @@ Dim j As Integer
             '---------------------
             SummaryTableRow = SummaryTableRow + 1
         
-    
-                
-                
-                
-                
+                    
             '---------------------
             ' If the ticker value we are comparing in the current row is the same as the ticker value in the row below, we want to do the following:
             '---------------------
@@ -229,7 +224,9 @@ Dim j As Integer
             End If
         
         Next j
-       
+        
+       'Summary Table Visual Formatting  - Autofit Cells
+        ws.Columns("I:Q").AutoFit
     
     Next ws
         
