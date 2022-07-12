@@ -148,8 +148,8 @@ Dim j As Integer
             '---------------------
             Else
                 
-                'This condition will only be met once we come into a new stock and the TotalStockCounter has been reset
-                'We know due to the chronological order of the data set, the first stock entry will best earliest entry of the year, therefor we can store the openprice value from this row
+                'This condition will only be met once we come into a new stock noted by the TotalStockCounter resetting to "O"
+                'We know due to the chronological order of the data set, the first stock entry will be earliest entry of the year, therefor we can store the openprice value from this row
                 If TotalStockCounter = 0 Then
             
                 OpenPriceYear = ws.Cells(i, 3).Value
