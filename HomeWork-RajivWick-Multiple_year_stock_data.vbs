@@ -20,7 +20,7 @@ Dim PercentageChangePrice As Double
 
 'The Total overall volume of a individual stock
 'Type LongLong to allow for large numbers
-Dim TotalStockCounter As LongLong
+Dim TotalStockVol As LongLong
 
 'Row cursor for our summary table output
 Dim SummaryTableRow As Integer
@@ -80,7 +80,8 @@ Dim j As Integer
     ws.Range("P1").Value = "Ticker"
     ws.Range("Q1").Value = "Value"
     
-    
+    'Intializing our TotalStockVol variable as 0
+    TotalStockVol = 0
     
     
         '---------------------
@@ -91,6 +92,14 @@ Dim j As Integer
             'Test the ticker value in the row we are comparing is not the same as the ticker value of the row below, we have reached a new stock, now do this:
             If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
             
+            'Added extra condition incase of stock entries that contain only a single data row
+                If TotalStockVol = 0 Then
+            
+                OpenPriceYear = ws.Cells(i, 3).Value
+                                                   
+                End If
+
+
             'Assign the Ticker value found in the row we are currently in to our Ticker variable
             Ticker = ws.Cells(i, 1).Value
             
@@ -125,7 +134,7 @@ Dim j As Integer
             'Calculate and output the percentage of the difference from the stock value at the start and end of the year within data set
             ws.Cells(SummaryTableRow, 11).Value = (ClosePriceYear / OpenPriceYear) - 1
             'Output the total amount volume
-            ws.Cells(SummaryTableRow, 12).Value = TotalStockCounter      
+            ws.Cells(SummaryTableRow, 12).Value = TotalStockVol      
             '---------------------
             'Summary Table Visual Formatting - % on price difference
             '---------------------
@@ -135,7 +144,7 @@ Dim j As Integer
             '---------------------
             'Now that we have come to the final data entry of a particular stock, we will reset counter variables
             '---------------------
-            TotalStockCounter = 0
+            TotalStockVol = 0
             
             '---------------------
             'We will increase the Summary Row counter by 1 to allow a new row of outputs within the summary table as we output new stock data
@@ -148,9 +157,9 @@ Dim j As Integer
             '---------------------
             Else
                 
-                'This condition will only be met once we come into a new stock noted by the TotalStockCounter resetting to "O"
+                'This condition will only be met once we come into a new stock noted by the TotalStockVol resetting to "O"
                 'We know due to the chronological order of the data set, the first stock entry will be earliest entry of the year, therefor we can store the openprice value from this row
-                If TotalStockCounter = 0 Then
+                If TotalStockVol = 0 Then
             
                 OpenPriceYear = ws.Cells(i, 3).Value
                                                    
@@ -158,7 +167,7 @@ Dim j As Integer
             
                                                                
             'Add the volume found in the row to a the total volume variable
-            TotalStockCounter = TotalStockCounter + ws.Cells(i, 7).Value
+            TotalStockVol = TotalStockVol + ws.Cells(i, 7).Value
             
             End If
                      
