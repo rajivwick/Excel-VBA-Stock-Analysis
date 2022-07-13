@@ -89,13 +89,17 @@ Dim j As Integer
         '---------------------
         For i = 2 To LastRow
         
-            'Test the ticker value in the row we are comparing is not the same as the ticker value of the row below, we have reached a new stock, now do this:
+            'Test the ticker value in the row we are comparing is not the same as the ticker value of the row below. If we trigger this we have reached a new stock, now do this:
             If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
             
-            'Added extra condition incase of stock entries that contain only a single data row
+            '---------------------
+            'Added extra condition incase of stock entry that contain only a single row of data
+            '---------------------
                 If TotalStockVol = 0 Then
-            
+
+                'Set our Open Price and new TotalStockVol value
                 OpenPriceYear = ws.Cells(i, 3).Value
+                TotalStockVol = ws.Cells(i, 7).Value
                                                    
                 End If
 
