@@ -185,14 +185,14 @@ Dim j As Integer
         '---------------------
         
         'Set our values to "0" before we enter our For Loop
-        HighestPer = 0
-        LowestPer = 0
+        HighestPer = -1000000000    'Extreme value set here to account for any datasets that might contain -ve growth as the highest available in summary
+        LowestPer = 100000000       'Extreme value set here to account for any datasets that might contain +ve growth as the lowest available in summary
         HighestVol = 0
        
         'We are searching through the newly created summary table, we know the No. of rows of the summary table as we used a counter/curser to create it.
         For j = 2 To SummaryTableRow
         
-        
+               
             'We are comparing Percentage value of the cell against our stored HighestPer Variable
             'If the cell value is higher than the stored variable value then do this
             If ws.Cells(j, 11).Value > HighestPer Then
