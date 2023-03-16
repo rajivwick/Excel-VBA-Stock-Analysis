@@ -13,12 +13,12 @@ Using VBA scripting Ive analyzed some generated stock market data. The intention
 A script was created that loops through all the stocks for one year and outputs the following information:
 
 <ul>
-<li>
+
 <li>The ticker symbol</li>
 
 <li>Yearly change from the opening price at the beginning of a given year to the closing price at the end of that year.</li>
 
 <li>The percentage change from the opening price at the beginning of a given year to the closing price at the end of that year.</li>
 
-<li>The total stock volume of the stock.</li>
+<li>The total stock volume of the stock.
 </ul>
